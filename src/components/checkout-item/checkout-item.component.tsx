@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { addItemToCart, removeItemFromCart, clearItemFromCart } from "../../store/cart/cart.action";
@@ -18,7 +19,7 @@ type CheckoutItemProps = {
   cartItem: CartItem
 };
 
-const CheckoutItem = ({ cartItem }: CheckoutItemProps) => {
+const CheckoutItem = memo(({ cartItem }: CheckoutItemProps) => {
     const { name, imageUrl, quantity, price } = cartItem;
     const cartItems = useSelector(selectCartItems);
 
@@ -43,6 +44,6 @@ const CheckoutItem = ({ cartItem }: CheckoutItemProps) => {
             <RemoveButton onClick={clearItemHandler}>&#10005;</RemoveButton>
         </CheckoutItemContainer>
     );
-}
+});
 
 export default CheckoutItem;
